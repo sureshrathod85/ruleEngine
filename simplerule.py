@@ -114,7 +114,7 @@ def referance_rule(input_Json,input_list):
                else:
                   local_list.append(ndict[elmenet])
       global_list.append(local_list)
-   print(global_list)
+   #print(global_list)
    return global_list
 
 #inputdict={"mbr":"LP.Open Access","val":"PCPNotRequired/RefNotRequired","valText":"PPO,RPPO"}
@@ -196,10 +196,21 @@ referance_list=referance_rule(input_Json,inputdict)
 compared_list=referance_rule(Next_Json,inputdict)
 status=perform_check(referance_list,compared_list)   
 lst=generateRule1(compared_list,status)
+#print(lst)
 convert_string="".join(lst)
-print(convert_string)
-for item in lst:
-   print(item)
+#print(convert_string)
+
+from py_mini_racer import py_mini_racer
+ctx=py_mini_racer.MiniRacer()
+#ctx.eval("var lst={};".format(convert_string))
+ctx.eval("var lst={};".format(lst))
+print(ctx.eval("var len=lst.length; var str=' ';var iter=0; while(iter<len) { str=str+lst[iter]; iter=iter+1;} str"))
+#print(ctx.eval("var str=' '; var lst={};var len=lst.length; var iter=0; while (iter<len){ str=str+lst[iter] ;iter=iter+1;} str".format(lst)))
+#print(ctx.eval(" {} ".format(convert_string)))
+#print(convert_string)
+
+#for item in lst:
+ #  print(item)
 
 
 

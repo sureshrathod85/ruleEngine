@@ -270,6 +270,12 @@ refernace_list,case_list,g_token_list=referance_rule(json_data,inpput_list)
 input_string="[Walk-in clinics]<*PrimaryCarePhysican*> <*copays*> for select services at nationally contracted walk-in clinics, including MinuteClinic® locations"
 lst=generateRule(refernace_list,case_list,g_token_list,input_string)
 string_repr="".join(lst)
-print(string_repr)
-for item in lst:
-   print(item)
+#print(string_repr)
+from py_mini_racer import py_mini_racer
+ctx=py_mini_racer.MiniRacer()
+
+print(ctx.eval("var lst={};".format(lst)))
+print(ctx.eval("var len=lst.length; var str=' ';var iter=0; while(iter<len) { str=str+lst[iter]; iter=iter+1;} str"))
+
+#for item in lst:
+ #  print(item)
